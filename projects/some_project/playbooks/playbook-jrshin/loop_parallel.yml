@@ -1,0 +1,11 @@
+---
+- hosts: web-servers
+  remote_user: root
+
+  alpha: [ 'a', 'b', 'c', 'd' ]
+
+  tasks:
+    - debug:
+        msg: "{{ item.0 }} and {{ item.1 }}"
+      with_together:
+        - "{{ alpha }}"

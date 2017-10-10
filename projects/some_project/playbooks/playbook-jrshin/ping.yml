@@ -1,0 +1,8 @@
+---
+# hosts: web-servers
+- hosts: em-ansible-host
+  remote_user: root
+  tasks:
+    - name: test connection
+      ping:
+      remote_user: root

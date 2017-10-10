@@ -1,0 +1,7 @@
+---
+- hosts: dhcp138.icn.aus.osc
+
+  tasks:
+
+    - name: Check target host
+      ping:

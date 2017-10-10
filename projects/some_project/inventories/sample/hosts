@@ -1,0 +1,5 @@
+[target_hosts]
+localhost
+
+[em-ansible-host]
+dhcp138.icn.aus.osc

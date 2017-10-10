@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  vars:
+    tmpdata: "{{ lookup('file','data.json')|from_json }}"
+
+  tasks:
+  - name: Iterate JSON
+    set_fact:
+      app_item: "{{ item.contextRoot }}"
+    with_items: "{{ tmpdata.webInfLib }}"
+    register: app_result
+  - name: Create Fact List
+    set_fact:
+      apps: "{{ app_result.results | map(attribute='ansible_facts.app_item') | list }}"
+      #apps: "{{ app_result.results | list }}"
+  - name: Print Fact
+    debug: var=apps

@@ -1,0 +1,17 @@
+---
+- hosts: em-ansible-host
+  tasks:
+  - name: Running API
+    environment:
+      http_proxy: http://www-proxy.osc.au.oracle.com:80
+      https_proxy: http://www-proxy.osc.au.oracle.com:80
+    uri:
+      url: https://api.github.com/users
+      method: GET
+      return_content: yes
+      validate_certs: no
+      force_basic_auth: yes
+    register: user_list
+
+  - name: App Details
+    debug: var=user_list

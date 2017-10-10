@@ -1,0 +1,10 @@
+- hosts: testhost
+
+  roles:
+     - php
+     - nginx
+
+  environment:
+    http_proxy: http://proxy.example.com:8080
+    https_proxy: http://proxy.bos.example.com:8080
+

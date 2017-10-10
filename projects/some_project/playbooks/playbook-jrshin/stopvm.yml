@@ -1,0 +1,20 @@
+---
+- hosts: em-ansible-host
+  tasks:
+  - name: stop vm
+    uri:
+      url: https://em13-test.gdn.aus.osc:7803/em/cloud/iaas/server/vm/F2002C3D2B27DFF4EBD522BCA46A3571
+      method: PUT
+      return_content: yes
+      headers: 
+        Content-Type: application/oracle.com.cloud.common.VM+json
+      user: osc_anz_admin
+      password: welcome1
+      validate_certs: no
+      force_basic_auth: yes
+      body: {"status":"STOPPED"}
+
+      body_format: json 
+      register: output_stop_vm
+  - name: output stop vm
+    debug: var=output_stop_vm

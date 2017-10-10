@@ -1,0 +1,19 @@
+---
+- hosts: em-ansible-host
+  tasks:
+  - name: deploy vm
+    uri:
+      url: https://em13-test.gdn.aus.osc:7803/em/cloud/iaas/servicetemplate/assembly/oracle%3AdefaultService%3Aem%3Aprovisioning%3A1%3Acmp%3AVirtualization%3AAssembly%3A4A053D24C74A6351E05335D6538C55A4%3A0.1
+      method: POST
+      return_content: yes
+      headers: 
+        Content-Type: "application/oracle.com.cloud.common.AssemblyInstance"
+      user: osc_anz_admin
+      password: welcome1
+      validate_certs: no
+      force_basic_auth: yes
+      body: {"zone":"/em/cloud/iaas/zone/6E4E4EF5A015FAD3184B38B7865C0899","cpu":[2,0],"memory":"2048","params":{"vnc_password":"welcome1","root_password":"welcome1","assembly_instance_name": "dockertest1"}}
+      body_format: json 
+      register: output_deployvm
+  - name: output deployvm
+    debug: var=output_deployvm

@@ -1,0 +1,13 @@
+---
+- hosts: web-servers
+  remote_user: root
+
+  handlers:
+    - name: restart httpd
+      service: name=httpd state=restarted
+      listen: "restart web services"
+  tasks:
+    - name: restart everything
+      command: echo "handler test"
+      notify: "restart web services"
+
